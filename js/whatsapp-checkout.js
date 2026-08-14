@@ -136,7 +136,7 @@ class MedROBECart {
     if (this.items.length === 0) {
       this.cartItemsList.innerHTML = `
         <div class="empty-cart-state">
-          <div class="empty-cart-icon">🛍️</div>
+          <div class="empty-cart-icon"></div>
           <h4>Your MedROBE Bag is Empty</h4>
           <p>Explore our medical scrubs, labcoats, stethoscopes & clinical kits to build your order.</p>
           <button class="btn btn-primary btn-sm" onclick="window.MedROBECart.closeDrawer(); window.location.hash='#catalog';">
@@ -155,7 +155,7 @@ class MedROBECart {
       if (item.customization) {
         customBadge = `
           <div class="cart-custom-details">
-            <span class="custom-tag">✨ Custom Embroidery</span>
+            <span class="custom-tag"> Custom Embroidery</span>
             <div class="custom-sub">${item.customization.embroideryName} • ${item.customization.threadColor}</div>
             <div class="custom-sub muted">${item.customization.embroideryDept}</div>
           </div>
@@ -217,21 +217,21 @@ class MedROBECart {
       return null;
     }
 
-    let msg = `🩺 *NEW ORDER: MedROBE & Accessories by Lene* 🩺\n`;
+    let msg = ` *NEW ORDER: MedROBE & Accessories by Lene* \n`;
     msg += `------------------------------------\n`;
     msg += `👤 *Customer Name:* ${custName}\n`;
-    if (custPhone) msg += `📞 *Phone / WhatsApp:* ${custPhone}\n`;
-    msg += `📍 *Delivery / Collection:* ${custDelivery}\n`;
+    if (custPhone) msg += ` *Phone / WhatsApp:* ${custPhone}\n`;
+    msg += ` *Delivery / Collection:* ${custDelivery}\n`;
     if (custLocationNote) msg += `🏫 *Hostel / Room / Address:* ${custLocationNote}\n`;
     msg += `------------------------------------\n`;
-    msg += `📦 *ORDER ITEMS (${this.getTotalCount()} items):*\n\n`;
+    msg += ` *ORDER ITEMS (${this.getTotalCount()} items):*\n\n`;
 
     this.items.forEach((item, i) => {
       msg += `${i + 1}. *${item.name}*\n`;
       msg += `   • Size: ${item.size} | Color: ${item.color}\n`;
       msg += `   • Qty: ${item.quantity} | Subtotal: GH₵ ${item.priceGHS * item.quantity}\n`;
       if (item.customization) {
-        msg += `   ✨ *Custom Embroidery:* "${item.customization.embroideryName}"\n`;
+        msg += `    *Custom Embroidery:* "${item.customization.embroideryName}"\n`;
         msg += `      - Dept: ${item.customization.embroideryDept}\n`;
         if (item.customization.embroiderySubDept) msg += `      - Unit: ${item.customization.embroiderySubDept}\n`;
         msg += `      - Thread Color: ${item.customization.threadColor}\n`;
@@ -252,8 +252,8 @@ class MedROBECart {
       msg += `📝 *Customer Notes:* ${custSpecialNote}\n`;
       msg += `------------------------------------\n`;
     }
-    msg += `✨ *Sent via MedROBE by Lene Official Showcase*\n`;
-    msg += `📍 *FHUC Hub: Room M306 | Phone: 0245636351*`;
+    msg += ` *Sent via MedROBE by Lene Official Showcase*\n`;
+    msg += ` *FHUC Hub: Room M306 | Phone: 0245636351*`;
 
     return msg;
   }

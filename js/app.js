@@ -200,7 +200,7 @@ function openProductQuickView(productId) {
         <img src="${product.image}" alt="${product.name}" class="qv-main-img">
         <div class="qv-badge">${product.badge || 'Official MedROBE'}</div>
         <div class="qv-trust-bar">
-          <span>✨ FHUC Student Preferred</span> • 
+          <span> FHUC Student Preferred</span> • 
           <span>🚚 Room M306 Pickup</span>
         </div>
       </div>
@@ -253,7 +253,7 @@ function openProductQuickView(productId) {
             Add to WhatsApp Bag
           </button>
           <button class="btn btn-secondary qv-custom-btn" onclick="goToCustomizerWithProduct('${product.category}')">
-            ✨ Add Custom Embroidery
+             Add Custom Embroidery
           </button>
         </div>
       </div>

@@ -7,7 +7,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@600&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
   <style>
     :root {
       --primary: #0d766e;
@@ -112,7 +111,7 @@
     /* Flyer Canvas (A4 Aspect Ratio Printable Card) */
     .flyer-sheet {
       width: 100%;
-      max-width: 794px; /* A4 width at 96 DPI */
+      max-width: 794px;
       background: #ffffff;
       border-radius: 20px;
       box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
@@ -124,7 +123,6 @@
       justify-content: space-between;
     }
 
-    /* Decorative Corner Accents */
     .flyer-sheet::before {
       content: '';
       position: absolute;
@@ -216,7 +214,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.1rem;
       flex-shrink: 0;
     }
 
@@ -272,18 +269,22 @@
 
     .qr-frame {
       background: #ffffff;
-      padding: 1rem;
+      padding: 0.75rem;
       border-radius: 14px;
       box-shadow: 0 6px 18px rgba(0,0,0,0.25);
       margin-bottom: 1rem;
       display: flex;
       align-items: center;
       justify-content: center;
+      width: 190px;
+      height: 190px;
     }
 
-    #qr-canvas {
-      width: 170px !important;
-      height: 170px !important;
+    .qr-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 6px;
     }
 
     .qr-action-badge {
@@ -291,11 +292,11 @@
       color: #ffffff;
       font-size: 0.78rem;
       font-weight: 800;
-      padding: 0.4rem 0.95rem;
+      padding: 0.45rem 1rem;
       border-radius: 9999px;
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.45rem;
       box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
     }
 
@@ -318,6 +319,9 @@
       letter-spacing: 0.05em;
       color: #64748b;
       margin-bottom: 0.15rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
     }
 
     .footer-cell-val {
@@ -357,11 +361,18 @@
   <!-- Interactive Controls Bar (Not Printed) -->
   <div class="controls-bar">
     <div class="controls-left">
-      <label for="qr-target-url" class="controls-label">🔗 Presentation QR Code Destination Link:</label>
-      <input type="text" id="qr-target-url" class="url-input" value="https://medrobe-by-lene.onrender.com" placeholder="Paste website, GitHub, or WhatsApp link">
+      <label for="qr-select" class="controls-label">Presentation QR Destination Mode:</label>
+      <select id="qr-select" class="url-input" onchange="changeQR(this.value)">
+        <option value="assets/images/qrcode-website.png">Website Link (medrobe-by-lene.onrender.com)</option>
+        <option value="assets/images/qrcode-whatsapp.png">Direct WhatsApp Chat (0245636351)</option>
+        <option value="assets/images/qrcode-github.png">GitHub Repository</option>
+      </select>
     </div>
     <div style="display: flex; gap: 0.65rem;">
-      <a href="index.html" class="btn-back">← Back to Site</a>
+      <a href="index.html" class="btn-back">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+        <span>Back to Site</span>
+      </a>
       <button class="btn-print" onclick="window.print()">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
         <span>Print Flyer (PDF / A4)</span>
@@ -385,7 +396,9 @@
       <!-- Left: Products & Services -->
       <div class="products-list-box">
         <div class="product-highlight-item">
-          <div class="item-badge-icon">🥼</div>
+          <div class="item-badge-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>
+          </div>
           <div class="item-info">
             <div class="item-name">4-Way Stretch Medical Scrubs</div>
             <div class="item-detail">9-Pocket utility, anti-wrinkle & antimicrobial</div>
@@ -394,7 +407,9 @@
         </div>
 
         <div class="product-highlight-item">
-          <div class="item-badge-icon">👔</div>
+          <div class="item-badge-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4"/><path d="M9 4v16"/><path d="M15 4v16"/><path d="M4 9h16"/></svg>
+          </div>
           <div class="item-info">
             <div class="item-name">Executive Doctor Labcoats</div>
             <div class="item-detail">Tailored fit with custom gold caduceus embroidery</div>
@@ -403,7 +418,9 @@
         </div>
 
         <div class="product-highlight-item">
-          <div class="item-badge-icon">🩺</div>
+          <div class="item-badge-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 3v5a4.5 4.5 0 0 0 9 0V3"/><path d="M9 12.5v4.25a3.25 3.25 0 0 0 6.5 0v-2"/><circle cx="15.5" cy="12.5" r="2.5"/></svg>
+          </div>
           <div class="item-info">
             <div class="item-name">Cardiology Dual-Head Stethoscopes</div>
             <div class="item-detail">Precision acoustics with champagne gold finish</div>
@@ -412,7 +429,9 @@
         </div>
 
         <div class="product-highlight-item">
-          <div class="item-badge-icon">🩸</div>
+          <div class="item-badge-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="3"/><circle cx="12" cy="14" r="3"/><path d="M12 7h.01"/></svg>
+          </div>
           <div class="item-info">
             <div class="item-name">Digital Blood Glucose Systems</div>
             <div class="item-detail">Instant 5s readings with test strips & lancing kit</div>
@@ -421,7 +440,9 @@
         </div>
 
         <div class="product-highlight-item">
-          <div class="item-badge-icon">🎒</div>
+          <div class="item-badge-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2h8a2 2 0 0 1 2 2v2H6V4a2 2 0 0 1 2-2Z"/><rect width="20" height="14" x="2" y="6" rx="2"/><path d="M12 11v4"/><path d="M10 13h4"/></svg>
+          </div>
           <div class="item-info">
             <div class="item-name">Complete 7-Piece Student Medical Kit</div>
             <div class="item-detail">BP cuff, reflex hammer, penlight, shears & organizer</div>
@@ -436,7 +457,7 @@
         <div class="qr-card-sub">Point phone camera to browse catalog & customize embroidery</div>
 
         <div class="qr-frame">
-          <canvas id="qr-canvas"></canvas>
+          <img id="flyer-qr-image" src="assets/images/qrcode-website.png" alt="Scan to visit MedROBE catalog" class="qr-img">
         </div>
 
         <div class="qr-action-badge">
@@ -449,42 +470,35 @@
     <!-- Footer Touchpoints -->
     <div class="flyer-footer">
       <div>
-        <div class="footer-cell-title">📍 Campus Pickup Hub</div>
+        <div class="footer-cell-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>Campus Pickup Hub</span>
+        </div>
         <div class="footer-cell-val highlight">FHUC Room M306</div>
       </div>
 
       <div>
-        <div class="footer-cell-title">📞 Direct Call / WhatsApp</div>
+        <div class="footer-cell-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span>Direct Call / WhatsApp</span>
+        </div>
         <div class="footer-cell-val">0245636351</div>
       </div>
 
       <div>
-        <div class="footer-cell-title">📲 Social Channels</div>
-        <div class="footer-cell-val" style="font-size: 0.82rem;">IG: @medrobe_bylene</div>
+        <div class="footer-cell-title">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+          <span>Social Media</span>
+        </div>
+        <div class="footer-cell-val" style="font-size: 0.82rem;">@medrobe_bylene</div>
       </div>
     </div>
   </div>
 
   <script>
-    const urlInput = document.getElementById('qr-target-url');
-    const canvas = document.getElementById('qr-canvas');
-
-    function renderQR() {
-      const target = urlInput.value.trim() || 'https://medrobe-by-lene.onrender.com';
-      QRCode.toCanvas(canvas, target, {
-        width: 170,
-        margin: 1,
-        color: {
-          dark: '#0d766e',
-          light: '#ffffff'
-        }
-      }, function (error) {
-        if (error) console.error(error);
-      });
+    function changeQR(src) {
+      document.getElementById('flyer-qr-image').src = src;
     }
-
-    urlInput.addEventListener('input', renderQR);
-    window.addEventListener('DOMContentLoaded', renderQR);
   </script>
 </body>
 </html>
