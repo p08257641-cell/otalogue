@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Presentation Flyer & QR Code | MedROBE & Accessories by Lene</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Caveat:wght@600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+  <style>
+    :root {
+      --primary: #0d766e;
+      --primary-dark: #042f2e;
+      --secondary: #0f172a;
+      --accent-gold: #d97706;
+      --bg: #f8fafc;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #e2e8f0;
+      color: var(--secondary);
+      padding: 2rem 1rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Print Controls Bar (Hidden during printing) */
+    .controls-bar {
+      width: 100%;
+      max-width: 800px;
+      background: #ffffff;
+      padding: 1.25rem 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .controls-left {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      flex-grow: 1;
+    }
+
+    .controls-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .url-input {
+      width: 100%;
+      padding: 0.6rem 0.85rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-family: inherit;
+    }
+
+    .btn-print {
+      background: var(--primary);
+      color: #ffffff;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .btn-print:hover {
+      background: #0b615b;
+      transform: translateY(-2px);
+    }
+
+    .btn-back {
+      background: #f1f5f9;
+      color: var(--secondary);
+      border: 1px solid #cbd5e1;
+      padding: 0.75rem 1.2rem;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    /* Flyer Canvas (A4 Aspect Ratio Printable Card) */
+    .flyer-sheet {
+      width: 100%;
+      max-width: 794px; /* A4 width at 96 DPI */
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+      padding: 2.75rem 3rem;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* Decorative Corner Accents */
+    .flyer-sheet::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 10px;
+      background: linear-gradient(90deg, #0d766e, #25D366, #d97706);
+    }
+
+    /* Header */
+    .flyer-header {
+      text-align: center;
+      margin-bottom: 1.75rem;
+      border-bottom: 2px dashed #e2e8f0;
+      padding-bottom: 1.5rem;
+    }
+
+    .brand-eyebrow {
+      display: inline-block;
+      background: #ccfbf1;
+      color: var(--primary);
+      padding: 0.35rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.65rem;
+    }
+
+    .flyer-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.6rem;
+      font-weight: 900;
+      color: var(--secondary);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .flyer-title span {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .flyer-founder-meta {
+      font-size: 1.05rem;
+      color: #475569;
+      font-weight: 600;
+      margin-top: 0.4rem;
+    }
+
+    .flyer-founder-meta strong {
+      color: var(--secondary);
+    }
+
+    /* Main Grid */
+    .flyer-body-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 2rem;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    /* Left Column: Products */
+    .products-list-box {
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .product-highlight-item {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+    }
+
+    .item-badge-icon {
+      width: 36px;
+      height: 36px;
+      background: #ccfbf1;
+      color: var(--primary);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .item-info {
+      flex-grow: 1;
+    }
+
+    .item-name {
+      font-weight: 800;
+      font-size: 0.94rem;
+      color: var(--secondary);
+    }
+
+    .item-detail {
+      font-size: 0.76rem;
+      color: #64748b;
+    }
+
+    .item-price {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 1rem;
+      color: var(--primary);
+      white-space: nowrap;
+    }
+
+    /* Right Column: QR Code Box */
+    .qr-card-container {
+      background: linear-gradient(145deg, #042f2e, #0f172a);
+      color: #ffffff;
+      padding: 1.75rem 1.5rem;
+      border-radius: 20px;
+      text-align: center;
+      box-shadow: 0 12px 30px rgba(13, 118, 110, 0.25);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .qr-card-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #fef08a;
+      margin-bottom: 0.25rem;
+    }
+
+    .qr-card-sub {
+      font-size: 0.78rem;
+      color: #99f6e4;
+      margin-bottom: 1.15rem;
+    }
+
+    .qr-frame {
+      background: #ffffff;
+      padding: 1rem;
+      border-radius: 14px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #qr-canvas {
+      width: 170px !important;
+      height: 170px !important;
+    }
+
+    .qr-action-badge {
+      background: #25D366;
+      color: #ffffff;
+      font-size: 0.78rem;
+      font-weight: 800;
+      padding: 0.4rem 0.95rem;
+      border-radius: 9999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+    }
+
+    /* Footer Info Strip */
+    .flyer-footer {
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 1.25rem 1.5rem;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .footer-cell-title {
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #64748b;
+      margin-bottom: 0.15rem;
+    }
+
+    .footer-cell-val {
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: var(--secondary);
+    }
+
+    .footer-cell-val.highlight {
+      color: var(--primary);
+    }
+
+    /* Print Styles */
+    @media print {
+      body {
+        background: #ffffff;
+        padding: 0;
+      }
+
+      .controls-bar {
+        display: none !important;
+      }
+
+      .flyer-sheet {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        padding: 2rem 1.5rem !important;
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Interactive Controls Bar (Not Printed) -->
+  <div class="controls-bar">
+    <div class="controls-left">
+      <label for="qr-target-url" class="controls-label">🔗 Presentation QR Code Destination Link:</label>
+      <input type="text" id="qr-target-url" class="url-input" value="https://medrobe-by-lene.onrender.com" placeholder="Paste website, GitHub, or WhatsApp link">
+    </div>
+    <div style="display: flex; gap: 0.65rem;">
+      <a href="index.html" class="btn-back">← Back to Site</a>
+      <button class="btn-print" onclick="window.print()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+        <span>Print Flyer (PDF / A4)</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Printable Presentation Flyer -->
+  <div class="flyer-sheet">
+    <!-- Header -->
+    <div class="flyer-header">
+      <span class="brand-eyebrow">Official Presentation Showcase</span>
+      <h1 class="flyer-title">MedROBE <span>& Accessories by Lene</span></h1>
+      <p class="flyer-founder-meta">
+        Founded by <strong>Charlene Odei Asare</strong> · Family Health University College (FHUC)
+      </p>
+    </div>
+
+    <!-- Body Highlights -->
+    <div class="flyer-body-grid">
+      <!-- Left: Products & Services -->
+      <div class="products-list-box">
+        <div class="product-highlight-item">
+          <div class="item-badge-icon">🥼</div>
+          <div class="item-info">
+            <div class="item-name">4-Way Stretch Medical Scrubs</div>
+            <div class="item-detail">9-Pocket utility, anti-wrinkle & antimicrobial</div>
+          </div>
+          <div class="item-price">GH₵ 420</div>
+        </div>
+
+        <div class="product-highlight-item">
+          <div class="item-badge-icon">👔</div>
+          <div class="item-info">
+            <div class="item-name">Executive Doctor Labcoats</div>
+            <div class="item-detail">Tailored fit with custom gold caduceus embroidery</div>
+          </div>
+          <div class="item-price">GH₵ 350</div>
+        </div>
+
+        <div class="product-highlight-item">
+          <div class="item-badge-icon">🩺</div>
+          <div class="item-info">
+            <div class="item-name">Cardiology Dual-Head Stethoscopes</div>
+            <div class="item-detail">Precision acoustics with champagne gold finish</div>
+          </div>
+          <div class="item-price">GH₵ 480</div>
+        </div>
+
+        <div class="product-highlight-item">
+          <div class="item-badge-icon">🩸</div>
+          <div class="item-info">
+            <div class="item-name">Digital Blood Glucose Systems</div>
+            <div class="item-detail">Instant 5s readings with test strips & lancing kit</div>
+          </div>
+          <div class="item-price">GH₵ 290</div>
+        </div>
+
+        <div class="product-highlight-item">
+          <div class="item-badge-icon">🎒</div>
+          <div class="item-info">
+            <div class="item-name">Complete 7-Piece Student Medical Kit</div>
+            <div class="item-detail">BP cuff, reflex hammer, penlight, shears & organizer</div>
+          </div>
+          <div class="item-price">GH₵ 580</div>
+        </div>
+      </div>
+
+      <!-- Right: Scannable QR Code -->
+      <div class="qr-card-container">
+        <div class="qr-card-title">SCAN TO VIEW & ORDER</div>
+        <div class="qr-card-sub">Point phone camera to browse catalog & customize embroidery</div>
+
+        <div class="qr-frame">
+          <canvas id="qr-canvas"></canvas>
+        </div>
+
+        <div class="qr-action-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.301-.15-1.78-.878-2.056-.979-.275-.1-.475-.15-.675.15-.2.3-.775.979-.95 1.179-.175.2-.351.225-.651.075-.3-.15-1.266-.467-2.412-1.488-.891-.795-1.493-1.777-1.668-2.077-.175-.3-.019-.462.131-.611.136-.134.301-.35.451-.525.15-.175.2-.3.3-.5.1-.2.05-.375-.025-.525-.075-.15-.676-1.631-.925-2.23-.243-.585-.49-.505-.675-.515l-.576-.01c-.2 0-.525.075-.8.375s-1.05 1.025-1.05 2.5 1.075 2.898 1.225 3.1c.15.2 2.115 3.23 5.124 4.53.716.31 1.275.495 1.71.634.718.228 1.372.196 1.888.118.576-.086 1.78-.727 2.03-1.428.25-.7.25-1.301.175-1.428-.075-.127-.275-.202-.576-.352z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.98-1.408A9.957 9.957 0 0 0 12 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18.2a8.17 8.17 0 0 1-4.175-1.144l-.3-.178-2.96.837.842-2.885-.195-.31A8.163 8.163 0 0 1 3.8 12c0-4.522 3.678-8.2 8.2-8.2 4.522 0 8.2 3.678 8.2 8.2 0 4.522-3.678 8.2-8.2 8.2z"/></svg>
+          <span>Instant WhatsApp Handoff</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Touchpoints -->
+    <div class="flyer-footer">
+      <div>
+        <div class="footer-cell-title">📍 Campus Pickup Hub</div>
+        <div class="footer-cell-val highlight">FHUC Room M306</div>
+      </div>
+
+      <div>
+        <div class="footer-cell-title">📞 Direct Call / WhatsApp</div>
+        <div class="footer-cell-val">0245636351</div>
+      </div>
+
+      <div>
+        <div class="footer-cell-title">📲 Social Channels</div>
+        <div class="footer-cell-val" style="font-size: 0.82rem;">IG: @medrobe_bylene</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const urlInput = document.getElementById('qr-target-url');
+    const canvas = document.getElementById('qr-canvas');
+
+    function renderQR() {
+      const target = urlInput.value.trim() || 'https://medrobe-by-lene.onrender.com';
+      QRCode.toCanvas(canvas, target, {
+        width: 170,
+        margin: 1,
+        color: {
+          dark: '#0d766e',
+          light: '#ffffff'
+        }
+      }, function (error) {
+        if (error) console.error(error);
+      });
+    }
+
+    urlInput.addEventListener('input', renderQR);
+    window.addEventListener('DOMContentLoaded', renderQR);
+  </script>
+</body>
+</html>
