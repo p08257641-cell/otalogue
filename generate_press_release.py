@@ -20,26 +20,26 @@ COLOR_RED = RGBColor(185, 28, 28)          # Deep Crimson Red #B91C1C (matching 
 COLOR_DARK = RGBColor(15, 23, 42)
 COLOR_MUTED = RGBColor(71, 85, 105)
 
-# 1. Header Table: Left (Crest/Logo) | Right (Large Organization Text)
+# 1. Header Table: Left (Actual University Crest Logo) | Right (Organization Text)
 table = doc.add_table(rows=1, cols=2)
 table.alignment = WD_TABLE_ALIGNMENT.CENTER
 table.autofit = False
 
-logo_path = r'C:\Users\inspy\.gemini\antigravity\scratch\medrobe-by-lene\assets\images\fhumsa_logo.png'
+logo_path = r'C:\Users\inspy\.gemini\antigravity\scratch\medrobe-by-lene\assets\images\fhu_actual_logo.png'
 
 cell_left = table.cell(0, 0)
-cell_left.width = Inches(1.5)
+cell_left.width = Inches(1.4)
 cell_left.vertical_alignment = WD_ALIGN_VERTICAL.CENTER
 p_logo = cell_left.paragraphs[0]
 p_logo.alignment = WD_ALIGN_PARAGRAPH.LEFT
 r_logo = p_logo.add_run()
 try:
-    r_logo.add_picture(logo_path, width=Inches(1.25))
+    r_logo.add_picture(logo_path, width=Inches(1.15))
 except Exception as e:
     pass
 
 cell_right = table.cell(0, 1)
-cell_right.width = Inches(5.2)
+cell_right.width = Inches(5.3)
 cell_right.vertical_alignment = WD_ALIGN_VERTICAL.CENTER
 p_hdr = cell_right.paragraphs[0]
 p_hdr.paragraph_format.line_spacing = 1.15
@@ -47,7 +47,7 @@ p_hdr.paragraph_format.space_after = Pt(0)
 
 r_h1 = p_hdr.add_run('MEDICAL STUDENTS\' ASSOCIATION\n')
 r_h1.font.name = 'Arial Black'
-r_h1.font.size = Pt(17)
+r_h1.font.size = Pt(16)
 r_h1.font.bold = True
 r_h1.font.color.rgb = COLOR_BLACK
 
@@ -63,15 +63,15 @@ r_h3.font.size = Pt(9.5)
 r_h3.font.bold = True
 r_h3.font.color.rgb = COLOR_BLACK
 
-# 2. Main Statement Title
+# 2. Main Statement Title (OFFICIAL ACCEPTANCE removed as requested)
 p_title = doc.add_paragraph()
 p_title.alignment = WD_ALIGN_PARAGRAPH.CENTER
 p_title.paragraph_format.space_before = Pt(16)
 p_title.paragraph_format.space_after = Pt(4)
 
-r_title = p_title.add_run('OFFICIAL ACCEPTANCE & APPRECIATION STATEMENT ON THE 2026 FHUMSA GENERAL ELECTIONS')
+r_title = p_title.add_run('APPRECIATION STATEMENT ON THE 2026 FHUMSA GENERAL ELECTIONS')
 r_title.font.name = 'Arial'
-r_title.font.size = Pt(11.5)
+r_title.font.size = Pt(12)
 r_title.font.bold = True
 r_title.font.color.rgb = COLOR_BLACK
 
@@ -123,20 +123,17 @@ add_para('Third, we build together.', 'FHUMSA, you gave me the mandate; now watc
 
 add_para(None, 'CAMPAIGN OVER. SERVICE BEGINS.')
 
-# 4. Signature Block
-sig_path = r'C:\Users\inspy\.gemini\antigravity\scratch\medrobe-by-lene\assets\images\charlene_signature.png'
-
-p_sig_img = doc.add_paragraph()
-p_sig_img.paragraph_format.space_before = Pt(10)
-p_sig_img.paragraph_format.space_after = Pt(0)
-r_s = p_sig_img.add_run()
-try:
-    r_s.add_picture(sig_path, width=Inches(1.8))
-except Exception as e:
-    pass
+# 4. Signature Block (Clean blank space left for her to physically sign)
+p_space = doc.add_paragraph()
+p_space.paragraph_format.space_before = Pt(36) # Clean blank signature area
+p_space.paragraph_format.space_after = Pt(4)
+r_line = p_space.add_run('___________________________')
+r_line.font.name = 'Arial'
+r_line.font.size = Pt(10)
+r_line.font.color.rgb = COLOR_MUTED
 
 p_sign = doc.add_paragraph()
-p_sign.paragraph_format.space_after = Pt(20)
+p_sign.paragraph_format.space_after = Pt(24)
 
 r_name = p_sign.add_run('CHARLENE ODEI ASARE\n')
 r_name.font.name = 'Arial'
@@ -153,11 +150,11 @@ r_role.font.color.rgb = COLOR_BLACK
 # 5. Bottom Footer Strip
 p_foot = doc.add_paragraph()
 p_foot.alignment = WD_ALIGN_PARAGRAPH.CENTER
-p_foot.paragraph_format.space_before = Pt(16)
+p_foot.paragraph_format.space_before = Pt(18)
 p_foot_border = parse_xml(r'<w:pBdr xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:top w:val="single" w:sz="18" w:space="4" w:color="B91C1C"/></w:pBdr>')
 p_foot._p.get_or_add_pPr().append(p_foot_border)
 
-r_phone = p_foot.add_run('  +233 24 563 6351 / 0245636351  ·  fhumsa@fhu.edu.gh')
+r_phone = p_foot.add_run('+233 24 563 6351 / 0245636351  ·  fhumsa@fhu.edu.gh')
 r_phone.font.name = 'Arial'
 r_phone.font.size = Pt(10)
 r_phone.font.bold = True
@@ -165,4 +162,4 @@ r_phone.font.color.rgb = COLOR_BLACK
 
 out_file = r'C:\Users\inspy\.gemini\antigravity\scratch\medrobe-by-lene\FHUMSA_Press_Release_Charlene_Odei_Asare.docx'
 doc.save(out_file)
-print(f'Successfully generated official formal document: {out_file}')
+print(f'Successfully updated Word Document with actual logo, new title, and signature space: {out_file}')
