@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FHUMSA Press Release | Charlene Odei Asare - Financial Secretary Elect</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --fhu-green: #042f2e;
+      --fhu-teal: #0d766e;
+      --fhu-gold: #d97706;
+      --slate-dark: #0f172a;
+      --slate-muted: #475569;
+      --bg-page: #f1f5f9;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg-page);
+      color: var(--slate-dark);
+      line-height: 1.65;
+      padding: 2rem 1rem;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Action Control Toolbar */
+    .controls-toolbar {
+      width: 100%;
+      max-width: 820px;
+      background: #ffffff;
+      padding: 1rem 1.5rem;
+      border-radius: 14px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.25rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: var(--fhu-teal);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: #0b615b;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      color: var(--slate-dark);
+      border-color: #cbd5e1;
+    }
+
+    .btn-secondary:hover {
+      background: #f8fafc;
+      border-color: var(--slate-dark);
+    }
+
+    /* Letter Document Sheet (A4 Standard) */
+    .letterhead-sheet {
+      width: 100%;
+      max-width: 820px;
+      background: #ffffff;
+      border-radius: 4px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      padding: 3.5rem 4rem;
+      position: relative;
+      border-top: 6px solid var(--fhu-teal);
+    }
+
+    /* Official Letterhead Header */
+    .letterhead-header {
+      text-align: center;
+      padding-bottom: 1.5rem;
+      border-bottom: 2px solid var(--fhu-teal);
+      margin-bottom: 2rem;
+    }
+
+    .inst-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--fhu-green);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.25;
+    }
+
+    .inst-assoc {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--fhu-teal);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 0.25rem;
+    }
+
+    .inst-office {
+      font-size: 0.84rem;
+      font-weight: 800;
+      color: var(--fhu-gold);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-top: 0.2rem;
+    }
+
+    .inst-sub {
+      font-size: 0.78rem;
+      color: var(--slate-muted);
+      margin-top: 0.4rem;
+    }
+
+    /* Press Release Metadata */
+    .release-meta-grid {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px dashed #e2e8f0;
+      font-size: 0.88rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .release-tag {
+      display: inline-block;
+      background: #fef3c7;
+      color: #92400e;
+      font-size: 0.76rem;
+      font-weight: 800;
+      padding: 0.25rem 0.65rem;
+      border-radius: 4px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+
+    .meta-line {
+      color: var(--slate-muted);
+      font-size: 0.85rem;
+    }
+
+    .meta-line strong {
+      color: var(--slate-dark);
+    }
+
+    /* Headline */
+    .release-headline {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: var(--fhu-green);
+      text-align: center;
+      line-height: 1.25;
+      margin-bottom: 1.75rem;
+      letter-spacing: -0.01em;
+    }
+
+    /* Body Text */
+    .letter-body {
+      font-size: 1.02rem;
+      color: #1e293b;
+      line-height: 1.8;
+    }
+
+    .letter-body p {
+      margin-bottom: 1.35rem;
+    }
+
+    .salutation {
+      font-weight: 700;
+      color: var(--slate-dark);
+      margin-bottom: 1.25rem;
+    }
+
+    /* Emphasis Quote Callout */
+    .quote-callout {
+      background: #f0fdfa;
+      border-left: 4px solid var(--fhu-teal);
+      padding: 1.25rem 1.5rem;
+      margin: 1.75rem 0;
+      border-radius: 0 8px 8px 0;
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: var(--fhu-green);
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    .slogan-banner {
+      text-align: center;
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--fhu-gold);
+      letter-spacing: 0.08em;
+      padding: 1.25rem 0;
+      margin: 2rem 0 1.5rem;
+      border-top: 1px solid #e2e8f0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    /* Sign-Off Block */
+    .signoff-section {
+      margin-top: 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .signoff-text {
+      font-size: 0.95rem;
+    }
+
+    .signoff-name {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--fhu-green);
+      margin-top: 0.75rem;
+    }
+
+    .signoff-title {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--fhu-teal);
+    }
+
+    .signoff-dept {
+      font-size: 0.82rem;
+      color: var(--slate-muted);
+    }
+
+    .seal-badge {
+      border: 2px dashed var(--fhu-teal);
+      border-radius: 50%;
+      width: 95px;
+      height: 95px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--fhu-teal);
+      font-size: 0.65rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 0.5rem;
+      line-height: 1.15;
+    }
+
+    /* End Release Marker */
+    .end-marker {
+      text-align: center;
+      font-weight: 800;
+      color: var(--slate-muted);
+      letter-spacing: 0.2em;
+      margin-top: 2.5rem;
+    }
+
+    /* Print Formatting */
+    @media print {
+      body {
+        background: #ffffff;
+        padding: 0;
+      }
+
+      .controls-toolbar {
+        display: none !important;
+      }
+
+      .letterhead-sheet {
+        box-shadow: none !important;
+        padding: 2rem 1.5rem !important;
+        max-width: 100% !important;
+        border-top: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Controls Toolbar -->
+  <div class="controls-toolbar">
+    <div style="font-weight: 700; font-size: 0.92rem; color: var(--fhu-green);">
+      Official FHUMSA Press Release & Letter
+    </div>
+    <div style="display: flex; gap: 0.65rem; flex-wrap: wrap;">
+      <a href="FHUMSA_Press_Release_Charlene_Odei_Asare.docx" download class="btn-action btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>Download Word Doc (.docx)</span>
+      </a>
+      <button onclick="window.print()" class="btn-action btn-secondary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+        <span>Print to PDF</span>
+      </button>
+      <button onclick="copyPressReleaseText()" class="btn-action btn-secondary" id="copy-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+        <span id="copy-text">Copy Text</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Letterhead Sheet -->
+  <main class="letterhead-sheet" id="printable-letter">
+    <!-- Header -->
+    <header class="letterhead-header">
+      <h1 class="inst-title">Family Health University Medical School</h1>
+      <h2 class="inst-assoc">Medical Students' Association (FHUMSA)</h2>
+      <div class="inst-office">Office of the Financial Secretary — Elect</div>
+      <div class="inst-sub">Family Health University College · P.O. Box TS 669, Teshie, Accra, Ghana · fhumsa@fhu.edu.gh</div>
+    </header>
+
+    <!-- Release Info -->
+    <section class="release-meta-grid">
+      <div>
+        <span class="release-tag">For Immediate Release</span>
+        <div class="meta-line"><strong>Date:</strong> August 2026</div>
+        <div class="meta-line"><strong>Subject:</strong> Official Post-Election Appreciation & Acceptance Statement</div>
+      </div>
+      <div style="text-align: right;">
+        <div class="meta-line"><strong>Issued By:</strong> Charlene Odei Asare</div>
+        <div class="meta-line"><strong>Position:</strong> Financial Secretary — Elect</div>
+        <div class="meta-line"><strong>Institution:</strong> FHUMSA / FHUC</div>
+      </div>
+    </section>
+
+    <!-- Headline -->
+    <h2 class="release-headline">
+      WE DID IT: A MANDATE FOR SERVICE, TRANSPARENCY & IMPACT
+    </h2>
+
+    <!-- Body -->
+    <article class="letter-body">
+      <p class="salutation">
+        Dear Medical Students, Colleagues & Esteemed FHUMSA Fraternity,
+      </p>
+
+      <p>
+        To everyone who believed, encouraged, and voted—<strong>thank you</strong>. I am deeply humbled, honored, and grateful for the overwhelming trust you have placed in me. I will not take your trust for granted.
+      </p>
+
+      <div class="quote-callout">
+        "Winning wasn’t the finish line; it was the starting point.<br>
+        I step in with one mindset: <strong>WORK. SERVE. DELIVER.</strong>"
+      </div>
+
+      <p>
+        I want my tenure felt, not just remembered. Seen in concrete action, prudent financial stewardship, and open accountability—not just promised on campaign platforms.
+      </p>
+
+      <p>
+        FHUMSA, you gave me the mandate; now watch me put it to work.
+      </p>
+
+      <div class="slogan-banner">
+        CAMPAIGN OVER. SERVICE BEGINS.
+      </div>
+    </article>
+
+    <!-- Sign-off -->
+    <footer class="signoff-section">
+      <div class="signoff-text">
+        <div>Yours in Dedicated Service,</div>
+        <div class="signoff-name">Charlene Odei Asare</div>
+        <div class="signoff-title">Financial Secretary — Elect</div>
+        <div class="signoff-dept">Family Health University Medical Students' Association (FHUMSA)</div>
+        <div class="signoff-dept">Family Health University College, Teshie, Accra, Ghana</div>
+      </div>
+
+      <div class="seal-badge">
+        <span>FHUMSA</span>
+        <span style="font-size: 0.55rem; margin: 2px 0;">OFFICIAL</span>
+        <span>MANDATE</span>
+      </div>
+    </footer>
+
+    <div class="end-marker">###</div>
+  </main>
+
+  <script>
+    function copyPressReleaseText() {
+      const text = `FAMILY HEALTH UNIVERSITY MEDICAL STUDENTS' ASSOCIATION (FHUMSA)
+OFFICE OF THE FINANCIAL SECRETARY — ELECT
+
+FOR IMMEDIATE RELEASE
+DATE: August 2026
+ISSUED BY: Charlene Odei Asare, Financial Secretary — Elect
+SUBJECT: Official Post-Election Appreciation & Acceptance Statement
+
+WE DID IT: A MANDATE FOR SERVICE, TRANSPARENCY & IMPACT
+
+Dear Medical Students, Colleagues & Esteemed FHUMSA Fraternity,
+
+To everyone who believed, encouraged, and voted—thank you. I won't take your trust for granted.
+
+Winning wasn't the finish line; it was the starting point.
+
+I step in with one mindset: WORK. SERVE. DELIVER.
+
+I want my tenure felt, not just remembered. Seen, not just promised.
+
+FHUMSA, you gave me the mandate; now watch me put it to work.
+
+CAMPAIGN OVER. SERVICE BEGINS.
+
+Yours in Dedicated Service,
+Charlene Odei Asare
+Financial Secretary — Elect
+Family Health University Medical Students' Association (FHUMSA)
+Family Health University College, Teshie, Accra, Ghana
+###`;
+
+      navigator.clipboard.writeText(text).then(() => {
+        const btnText = document.getElementById('copy-text');
+        btnText.innerText = 'Copied to Clipboard!';
+        setTimeout(() => {
+          btnText.innerText = 'Copy Text';
+        }, 2500);
+      });
+    }
+  </script>
+</body>
+</html>
